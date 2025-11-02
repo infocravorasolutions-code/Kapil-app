@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="external_files" path="."/>
+    <external-files-path name="external_files" path="."/>
+    <cache-path name="cache" path="."/>
+    <external-cache-path name="external_cache" path="."/>
+    <files-path name="files" path="."/>
+    <files-path name="app_files" path="KAPIL_SONI_APP/"/>
+    <external-path name="downloads" path="Download/"/>
+    <files-path name="invoices" path="KAPIL_SONI_APP/invoices/"/>
+    <files-path name="bills" path="KAPIL_SONI_APP/invoices/bills/"/>
+    <external-path name="external_downloads" path="Download/KAPIL_SONI_APP/"/>
+    <external-path name="certificates" path="Download/KAPIL_SONI_APP/invoices/certificate/"/>
+</paths>

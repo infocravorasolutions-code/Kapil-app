@@ -1,97 +1,94 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# KAPIL SONI APK - Offline Invoice Generator
 
-# Getting Started
+A React Native application for generating jewellery invoices offline with PDF download functionality and local database storage.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- ✅ **Offline First**: Works completely offline, no internet required
+- ✅ **PDF Generation**: Creates professional invoice cards as PDF files
+- ✅ **Local Database**: SQLite database for storing invoice data
+- ✅ **Form Validation**: Input validation for all required fields
+- ✅ **Auto Download**: PDFs are automatically generated and saved locally
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Installation
 
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+1. Install dependencies:
+```bash
+npm install
 ```
 
-## Step 2: Build and run your app
+2. For Android, you may need to link native dependencies:
+```bash
+npx react-native link react-native-fs
+npx react-native link react-native-html-to-pdf
+npx react-native link react-native-sqlite-storage
+```
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+3. Run the app:
+```bash
+# For Android
 npm run android
 
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# For iOS
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Usage
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+1. **Fill the Form**: Enter customer details, jewellery information, weights, and gold purity
+2. **Generate Card**: Tap "Generate Card & Download PDF" button
+3. **PDF Created**: The invoice PDF is automatically generated and saved to device storage
+4. **Data Stored**: All invoice data is saved in local SQLite database
 
-## Step 3: Modify your app
+## Project Structure
 
-Now that you have successfully run the app, let's make changes!
+```
+src/
+├── database/
+│   └── db.ts              # SQLite database operations
+├── screens/
+│   └── FormScreen.tsx     # Main form interface
+└── utils/
+    └── pdfGenerator.ts    # PDF generation utilities
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Database Schema
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+The app uses SQLite with the following table structure:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+| Field | Type | Description |
+|-------|------|-------------|
+| id | INTEGER | Primary key (auto-increment) |
+| customer_name | TEXT | Customer name |
+| jewellery_details | TEXT | Type of jewellery |
+| gross_weight | REAL | Gross weight in grams |
+| net_weight | REAL | Net weight in grams |
+| gold_purity | TEXT | Gold purity (e.g., 22K) |
+| pdf_path | TEXT | Path to generated PDF file |
+| created_at | TEXT | Timestamp |
 
-## Congratulations! :tada:
+## Dependencies
 
-You've successfully run and modified your React Native App. :partying_face:
+- `react-native-fs`: File system operations
+- `react-native-html-to-pdf`: PDF generation from HTML
+- `react-native-sqlite-storage`: Local SQLite database
+- `react-native-paper`: UI components
+- `react-native-vector-icons`: Icons
 
-### Now what?
+## Build APK
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+To build the APK for distribution:
 
-# Troubleshooting
+```bash
+cd android
+./gradlew assembleRelease
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+The APK will be generated in `android/app/build/outputs/apk/release/`
 
-# Learn More
+## Notes
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- All data is stored locally on the device
+- PDFs are saved in the device's Documents folder
+- No internet connection required for any functionality
+- Database and PDF files persist between app sessions
